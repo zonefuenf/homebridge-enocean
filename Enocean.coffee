@@ -34,7 +34,6 @@ module.exports = class Enocean extends EventEmitter
         else return
 
       switch msg.EB.rawValue
-        when 0 then @emit 'released', data.senderId, button
         when 1 then @emit 'pressed', data.senderId, button
         else return
 

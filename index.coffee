@@ -27,8 +27,8 @@ EnoceanPlatform = (@log, @config, @api) ->
   #   @log sender + ": " + button + " pressed"
   #   @sendSwitchEvent(sender, button, 1)
 
-  @enocean.on 'released', (sender, button) =>
-    @log sender + ": " + button + " released"
+  @enocean.on 'pressed', (sender, button) =>
+    @log sender + ": " + button + " pressed"
     @setSwitchEventValue(sender, button, Characteristic.ProgrammableSwitchEvent.SINGLE_PRESS)
 
   @api.on 'didFinishLaunching', =>
