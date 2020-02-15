@@ -15,24 +15,26 @@ module.exports = (homebridge) ->
   Characteristic = homebridge.hap.Characteristic
   UUIDGen = homebridge.hap.uuid
 
-  homebridge.registerPlatform 'homebridge-enocean', 'enocean', EnoceanPlatform, true
+  homebridge.registerPlatform 'homebridge-enocean-zonefuenf', 'enocean-zonefuenf', EnoceanPlatform, true
   return
 
 EnoceanPlatform = (@log, @config, @api) ->
 
+  if !@config?
+    @log "No configuration found!"
+    return
+  if !@config.port?
+    @log "Property port in configuration has to be set!"
+    return
+
   @accessories = {}
   @enocean = new Enocean(port: @config.port)
-
-  # @enocean.on 'pressed', (sender, button) =>
-  #   @log sender + ": " + button + " pressed"
-  #   @sendSwitchEvent(sender, button, 1)
 
   @enocean.on 'pressed', (sender, button) =>
     @log sender + ": " + button + " pressed"
     @setSwitchEventValue(sender, button, Characteristic.ProgrammableSwitchEvent.SINGLE_PRESS)
 
   @api.on 'didFinishLaunching', =>
-    # @log 'DidFinishLaunching'
     for accessory in @config.accessories
       @addAccessory(accessory)
     return
@@ -65,7 +67,7 @@ EnoceanPlatform::configureAccessory = (accessory) ->
 
   serial = accessory.getService(Service.AccessoryInformation).getCharacteristic(Characteristic.SerialNumber).value
   unless serial?
-      @api.unregisterPlatformAccessories 'homebridge-enocean', 'enocean', [ accessory ]
+      @api.unregisterPlatformAccessories 'homebridge-enocean-zonefuenf', 'enocean-zonefuenf', [ accessory ]
       return
   @accessories[serial] = accessory
 
@@ -129,5 +131,5 @@ EnoceanPlatform::addAccessory = (config) ->
   accessory = @createProgrammableSwitch(config.name, config.eep, config.id)  
 
   @accessories[config.id] = accessory
-  @api.registerPlatformAccessories 'homebridge-enocean', 'enocean', [ accessory ]
+  @api.registerPlatformAccessories 'homebridge-enocean-zonefuenf', 'enocean-zonefuenf', [ accessory ]
   return

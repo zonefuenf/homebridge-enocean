@@ -1,8 +1,8 @@
-# homebridge-enocean
+# @zonefuenf/homebridge-enocean
 
-[![GitHub](https://img.shields.io/github/license/alexsporn/homebridge-enocean.svg)](https://github.com/alexsporn/homebridge-enocean/blob/master/LICENSE)
-![npm](https://img.shields.io/npm/v/homebridge-enocean.svg)
-![npm](https://img.shields.io/npm/dt/homebridge-enocean.svg)
+This is a fork of ![homebridge-enocean](https://github.com/alexsporn/homebridge-enocean) by Alexander Sporn I use to add bugfixes and changes relevant to my local use of this plugin. Feel free to use this any way you want.
+
+## Instructions
 
 A simple way to bridge your EnOcean switches to Homekit
 

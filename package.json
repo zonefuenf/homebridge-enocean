@@ -1,6 +1,6 @@
 {
-  "name": "homebridge-enocean",
-  "version": "0.1.1",
+  "name": "homebridge-enocean-zonefuenf",
+  "version": "0.2.0",
   "description": "A simple way to bridge your EnOcean switches to Homekit",
   "main": "index.js",
   "keywords": [
@@ -13,22 +13,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexsporn/homebridge-enocean.git"
+    "url": "git+https://github.com/zonefuenf/homebridge-enocean.git"
   },
   "bugs": {
-    "url": "https://github.com/alexsporn/homebridge-enocean/issues"
+    "url": "https://github.com/zonefuenf/homebridge-enocean/issues"
   },
-  "homepage": "https://github.com/alexsporn/homebridge-enocean/#readme",
+  "homepage": "https://github.com/zonefuenf/homebridge-enocean/#readme",
   "author": "alexsporn",
+  "contributors": "zonefuenf",
   "license": "MIT",
   "dependencies": {
-    "enocean-js": "0.0.1-beta.17",
-    "events": "^3.0.0",
-    "serialport": "^7.1.4"
+    "curve25519-n": "^1.5.0",
+    "enocean-js": "0.0.13",
+    "events": "^3.1.0",
+    "serialport": "^7.1.5"
   },
   "devDependencies": {
-    "coffeescript": "^2.4.1",
-    "homebridge": "^0.4.48"
+    "coffeescript": "^2.5.1",
+    "homebridge": "^0.4.50"
   },
   "engines": {
     "node": ">=0.12.0",
