@@ -31,7 +31,6 @@ EnoceanPlatform = (@log, @config, @api) ->
   @enocean = new Enocean(port: @config.port)
 
   @enocean.on 'pressed', (sender, button) =>
-    @log sender + ": " + button + " pressed"
     @setSwitchEventValue(sender, button, Characteristic.ProgrammableSwitchEvent.SINGLE_PRESS)
 
   @api.on 'didFinishLaunching', =>
@@ -51,17 +50,17 @@ EnoceanPlatform::setSwitchEventValue = (sender, button, value) ->
     if service.UUID == Service.StatelessProgrammableSwitch.UUID and service.subtype == button
       characteristic = service.getCharacteristic(Characteristic.ProgrammableSwitchEvent)
       characteristic.setValue(value)
-      @log 'Set', accessory.displayName, button, 'value', value
+      @log 'Set button', button, 'of switch', accessory.displayName, 'to value', value
       return
   @log 'Could not find button', button
   return
 
 EnoceanPlatform::configureAccessory = (accessory) ->
-  @log 'Configure Accessory:', accessory.displayName
+  @log 'Configure accessory:', accessory.displayName
 
   accessory.reachable = true
   accessory.on 'identify', (paired, callback) =>
-    @log accessory.displayName, 'Identify!!!'
+    @log accessory.displayName, 'identified'
     callback()
     return
 
@@ -84,7 +83,7 @@ EnoceanPlatform::createProgrammableSwitch = (name, model, serial) ->
 
   accessory = new Accessory(name, uuid)
   accessory.on 'identify', (paired, callback) =>
-    @log accessory.displayName, 'Identify!!!'
+    @log accessory.displayName, 'identfied'
     callback()
     return
 
@@ -123,10 +122,10 @@ EnoceanPlatform::createProgrammableSwitchButton = (accesoryName, buttonIndex, bu
 
 EnoceanPlatform::addAccessory = (config) ->
   if @accessories[config.id]?
-    # @log 'Skip Accessory: ' + config.name
+    @log 'Skip accessory without EnOcean id: ' + config.name
     return
 
-  @log 'Add Accessory:', config.name
+  @log 'Add accessory:', config.name
   
   accessory = @createProgrammableSwitch(config.name, config.eep, config.id)  
 

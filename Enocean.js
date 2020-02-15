@@ -20,7 +20,7 @@
       this.parser = this.port.pipe(new EnoceanJS.ESP3Parser());
       this.transformer = this.parser.pipe(new EnoceanJS.ESP3Transformer());
       this.port.on('open', () => {
-        return console.log('opened port ' + this.options.port);
+        return console.log('Opened port ' + this.options.port);
       });
       this.port.on('error', (error) => {
         return this.emit('error', error);

@@ -1,0 +1,69 @@
+{
+  "pluginAlias": "enocean-zonefuenf",
+  "pluginType": "platform",
+  "singular": true,
+  "headerDisplay": "EnOcean Switch Plugin",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Platform name",
+        "description": "This name is used in log files.",
+        "type": "string",
+        "required": true,
+        "default": "EnOcean"
+      },
+      "port": {
+        "title": "Device port",
+        "description": "Serial port of the EnOcean radio device. Make sure Homebridge has access right to the device.",
+        "type": "string",
+        "required": true,
+        "default": "/dev/ttyUSB0"
+      },
+      "accessories": {
+        "title": "List of switches to be exposed by the plugin",
+        "description": "Each accessory to be exposed by Homebridge needs to be listed in this section.",
+        "type": "array",
+        "items": {
+          "title": "Switch",
+          "type": "object",
+          "properties": {
+            "name": {
+              "title": "Device name",
+              "description": "Choose a descriptive name. This will be visible in HomeKit.",
+              "required": true,
+              "type": "string",
+              "default": "My switch"
+            },
+            "id": {
+              "title": "EnOcean ID",
+              "description": "The EnOcean ID can be found on the physical device. It should be entered like aabbccdd.",
+              "type": "string",
+              "required": true
+            },
+            "eep": {
+              "title": "EnOcean Equipment Profile",
+              "description": "Only switches (f6-02-01) are supported at this point.",
+              "type": "string",
+              "required": true,
+              "default": "f6-02-01"
+            }
+          }
+        }
+      }
+    },
+    "form": [
+      "name",
+      "port",
+      {
+        "key": "accessories",
+        "type": "array",
+        "items": {
+          "title": "Switch",
+          "description": "Desc",
+          "type": "object"
+        }
+      }
+    ]
+  }
+}

@@ -39,7 +39,6 @@
       port: this.config.port
     });
     this.enocean.on('pressed', (sender, button) => {
-      this.log(sender + ": " + button + " pressed");
       return this.setSwitchEventValue(sender, button, Characteristic.ProgrammableSwitchEvent.SINGLE_PRESS);
     });
     this.api.on('didFinishLaunching', () => {
@@ -64,7 +63,7 @@
       if (service.UUID === Service.StatelessProgrammableSwitch.UUID && service.subtype === button) {
         characteristic = service.getCharacteristic(Characteristic.ProgrammableSwitchEvent);
         characteristic.setValue(value);
-        this.log('Set', accessory.displayName, button, 'value', value);
+        this.log('Set button', button, 'of switch', accessory.displayName, 'to value', value);
         return;
       }
     }
@@ -73,10 +72,10 @@
 
   EnoceanPlatform.prototype.configureAccessory = function(accessory) {
     var serial;
-    this.log('Configure Accessory:', accessory.displayName);
+    this.log('Configure accessory:', accessory.displayName);
     accessory.reachable = true;
     accessory.on('identify', (paired, callback) => {
-      this.log(accessory.displayName, 'Identify!!!');
+      this.log(accessory.displayName, 'identified');
       callback();
     });
     serial = accessory.getService(Service.AccessoryInformation).getCharacteristic(Characteristic.SerialNumber).value;
@@ -96,7 +95,7 @@
     uuid = UUIDGen.generate(serial);
     accessory = new Accessory(name, uuid);
     accessory.on('identify', (paired, callback) => {
-      this.log(accessory.displayName, 'Identify!!!');
+      this.log(accessory.displayName, 'identfied');
       callback();
     });
     info = accessory.getService(Service.AccessoryInformation);
@@ -130,10 +129,10 @@
   EnoceanPlatform.prototype.addAccessory = function(config) {
     var accessory;
     if (this.accessories[config.id] != null) {
+      this.log('Skip accessory without EnOcean id: ' + config.name);
       return;
     }
-    // @log 'Skip Accessory: ' + config.name
-    this.log('Add Accessory:', config.name);
+    this.log('Add accessory:', config.name);
     accessory = this.createProgrammableSwitch(config.name, config.eep, config.id);
     this.accessories[config.id] = accessory;
     this.api.registerPlatformAccessories('homebridge-enocean-zonefuenf', 'enocean-zonefuenf', [accessory]);

@@ -15,7 +15,7 @@ module.exports = class Enocean extends EventEmitter
     @transformer = @parser.pipe new EnoceanJS.ESP3Transformer()
 
     @port.on 'open', =>
-      console.log 'opened port ' + @options.port
+      console.log 'Opened port ' + @options.port
 
     @port.on 'error', (error) =>
       @emit 'error', error
