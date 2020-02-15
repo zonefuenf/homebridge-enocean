@@ -63,7 +63,7 @@
       if (service.UUID === Service.StatelessProgrammableSwitch.UUID && service.subtype === button) {
         characteristic = service.getCharacteristic(Characteristic.ProgrammableSwitchEvent);
         characteristic.setValue(value);
-        this.log('Set button', button, 'of switch', accessory.displayName, 'to value', value);
+        this.log(accessory.displayName + ':', 'Button', button, 'pressed');
         return;
       }
     }
