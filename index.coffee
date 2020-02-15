@@ -40,7 +40,7 @@ EnoceanPlatform = (@log, @config, @api) ->
 
   return
 
-EnoceanPlatform::setSwitchEventValue = (sender, button, value) ->
+EnoceanPlatform::setSwitchEventValue = (sender, button, value, logOn) ->
   accessory = @accessories[sender]
 
   unless accessory?
@@ -50,7 +50,8 @@ EnoceanPlatform::setSwitchEventValue = (sender, button, value) ->
     if service.UUID == Service.StatelessProgrammableSwitch.UUID and service.subtype == button
       characteristic = service.getCharacteristic(Characteristic.ProgrammableSwitchEvent)
       characteristic.setValue(value)
-      @log accessory.displayName+':', 'Button', button, 'pressed'
+      if logOn 
+        @log accessory.displayName+':', 'Button', button, 'pressed'
       return
   @log 'Could not find button', button
   return

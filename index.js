@@ -51,7 +51,7 @@
     });
   };
 
-  EnoceanPlatform.prototype.setSwitchEventValue = function(sender, button, value) {
+  EnoceanPlatform.prototype.setSwitchEventValue = function(sender, button, value, logOn) {
     var accessory, characteristic, i, len, ref, service;
     accessory = this.accessories[sender];
     if (accessory == null) {
@@ -63,7 +63,9 @@
       if (service.UUID === Service.StatelessProgrammableSwitch.UUID && service.subtype === button) {
         characteristic = service.getCharacteristic(Characteristic.ProgrammableSwitchEvent);
         characteristic.setValue(value);
-        this.log(accessory.displayName + ':', 'Button', button, 'pressed');
+        if (logOn) {
+          this.log(accessory.displayName + ':', 'Button', button, 'pressed');
+        }
         return;
       }
     }
