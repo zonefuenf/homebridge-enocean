@@ -26,7 +26,7 @@
     "curve25519-n": "^1.5.0",
     "enocean-js": "0.0.13",
     "events": "^3.1.0",
-    "serialport": "^7.1.5"
+    "serialport": "^8.0.7"
   },
   "devDependencies": {
     "coffeescript": "^2.5.1",
