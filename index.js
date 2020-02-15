@@ -131,10 +131,9 @@
   EnoceanPlatform.prototype.addAccessory = function(config) {
     var accessory;
     if (this.accessories[config.id] != null) {
-      this.log('Skip accessory without EnOcean id: ' + config.name);
       return;
     }
-    this.log('Add accessory:', config.name);
+    this.log('Add new accessory:', config.name);
     accessory = this.createProgrammableSwitch(config.name, config.eep, config.id);
     this.accessories[config.id] = accessory;
     this.api.registerPlatformAccessories('homebridge-enocean-zonefuenf', 'enocean-zonefuenf', [accessory]);

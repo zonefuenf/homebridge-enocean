@@ -123,10 +123,9 @@ EnoceanPlatform::createProgrammableSwitchButton = (accesoryName, buttonIndex, bu
 
 EnoceanPlatform::addAccessory = (config) ->
   if @accessories[config.id]?
-    @log 'Skip accessory without EnOcean id: ' + config.name
     return
 
-  @log 'Add accessory:', config.name
+  @log 'Add new accessory:', config.name
   
   accessory = @createProgrammableSwitch(config.name, config.eep, config.id)  
 
