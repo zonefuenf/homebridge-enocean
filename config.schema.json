@@ -20,6 +20,13 @@
         "required": true,
         "default": "/dev/ttyUSB0"
       },
+      "logPresses": {
+        "title": "Log button presses",
+        "description": "Write a message to the log whenever a button is pressed.",
+        "type": "boolean",
+        "required": true,
+        "default": true
+      },
       "accessories": {
         "title": "List of switches to be exposed by the plugin",
         "description": "Each accessory to be exposed by Homebridge needs to be listed in this section.",

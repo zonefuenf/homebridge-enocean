@@ -39,7 +39,8 @@
       port: this.config.port
     });
     this.enocean.on('pressed', (sender, button) => {
-      return this.setSwitchEventValue(sender, button, Characteristic.ProgrammableSwitchEvent.SINGLE_PRESS);
+      var ref;
+      return this.setSwitchEventValue(sender, button, Characteristic.ProgrammableSwitchEvent.SINGLE_PRESS, (ref = this.config.logPresses) != null ? ref : false);
     });
     this.api.on('didFinishLaunching', () => {
       var accessory, i, len, ref;

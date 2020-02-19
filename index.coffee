@@ -31,7 +31,7 @@ EnoceanPlatform = (@log, @config, @api) ->
   @enocean = new Enocean(port: @config.port)
 
   @enocean.on 'pressed', (sender, button) =>
-    @setSwitchEventValue(sender, button, Characteristic.ProgrammableSwitchEvent.SINGLE_PRESS)
+    @setSwitchEventValue(sender, button, Characteristic.ProgrammableSwitchEvent.SINGLE_PRESS, @config.logPresses ? false)
 
   @api.on 'didFinishLaunching', =>
     for accessory in @config.accessories
