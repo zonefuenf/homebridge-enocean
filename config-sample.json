@@ -1,16 +1,17 @@
 {
   "platforms": [
-    {
-      "name": "Enocean",
-      "platform": "enocean",
-      "port": "/dev/ttyUSB0",
-      "accessories": [
-        {
-          "id": "aabbccdd",   //sender id
-          "eep": "f6-02-01",  //rocker switch
-          "name": "Kitchen switch" 
+ {
+            "name": "EnOcean",
+            "port": "/dev/ttyUSB0",
+            "logPresses": true,
+            "accessories": [
+                {
+                    "name": "Switch 1",
+                    "id": "abcdef",
+                    "eep": "f6-02-01"
+                }
+            ],
+            "platform": "enocean-zonefuenf"
         }
-      ]
-    }
   ]
 }
