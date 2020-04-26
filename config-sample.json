@@ -1,17 +1,17 @@
 {
   "platforms": [
- {
-            "name": "EnOcean",
-            "port": "/dev/ttyUSB0",
-            "logPresses": true,
-            "accessories": [
-                {
-                    "name": "Switch 1",
-                    "id": "abcdef",
-                    "eep": "f6-02-01"
-                }
-            ],
-            "platform": "enocean-zonefuenf"
+    {
+      "name": "EnOcean",
+      "port": "/dev/ttyUSB0",
+      "logPresses": true,
+      "accessories": [
+        {
+          "name": "Switch 1",
+          "id": "abcdef",
+          "eep": "f6-02-01"
         }
+      ],
+      "platform": "enocean-zonefuenf"
+    }
   ]
 }
