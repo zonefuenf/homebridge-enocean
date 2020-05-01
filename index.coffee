@@ -49,7 +49,9 @@ EnoceanPlatform::setSwitchEventValue = (sender, button, value, logOn) ->
   accessory = @accessories[sender]
 
   unless accessory?
-    @log 'Unknown sender', sender
+    if @config.logUnconfigured ? true 
+      @log 'Unconfigured sender', sender
+    return
 
   for service in accessory.services
     if service.UUID == Service.StatelessProgrammableSwitch.UUID and service.subtype == button

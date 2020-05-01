@@ -27,6 +27,13 @@
         "required": true,
         "default": true
       },
+      "logUnconfigured": {
+        "title": "Log unconfigured senders",
+	"description": "Write a message to the log whenever a button event by an unconfigured sender is received.",
+	"type": "boolean",
+	"required": false,
+	"default": true
+      },
       "accessories": {
         "title": "List of switches to be exposed by the plugin",
         "description": "Each accessory to be exposed by Homebridge needs to be listed in this section.",

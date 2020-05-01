@@ -20,10 +20,11 @@ To use it add this to your `config.json`:
       "name": "EnOcean",
       "port": "/dev/ttyUSB0",
       "logPresses": true,
+      "logUnconfigured": true,
       "accessories": [
         {
           "name": "Switch 1",
-          "id": "abcdef",
+          "id": "abcdef12",
           "eep": "f6-02-01"
         }
       ],

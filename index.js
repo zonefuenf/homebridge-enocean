@@ -59,14 +59,17 @@
   };
 
   EnoceanPlatform.prototype.setSwitchEventValue = function(sender, button, value, logOn) {
-    var accessory, characteristic, i, len, ref, service;
+    var accessory, characteristic, i, len, ref, ref1, service;
     accessory = this.accessories[sender];
     if (accessory == null) {
-      this.log('Unknown sender', sender);
+      if ((ref = this.config.logUnconfigured) != null ? ref : true) {
+        this.log('Unconfigured sender', sender);
+      }
+      return;
     }
-    ref = accessory.services;
-    for (i = 0, len = ref.length; i < len; i++) {
-      service = ref[i];
+    ref1 = accessory.services;
+    for (i = 0, len = ref1.length; i < len; i++) {
+      service = ref1[i];
       if (service.UUID === Service.StatelessProgrammableSwitch.UUID && service.subtype === button) {
         characteristic = service.getCharacteristic(Characteristic.ProgrammableSwitchEvent);
         characteristic.setValue(value);
