@@ -1,5 +1,6 @@
 #
 # Copyright (c) 2019 Alexander Sporn. All rights reserved.
+# Copyright (c) 2020 Philipp Leser-Wolf
 #
 
 Enocean = require './Enocean'
@@ -28,12 +29,16 @@ EnoceanPlatform = (@log, @config, @api) ->
     return
 
   @accessories = {}
+  @staleAccessories = [] 
   @enocean = new Enocean(port: @config.port)
 
   @enocean.on 'pressed', (sender, button) =>
     @setSwitchEventValue(sender, button, Characteristic.ProgrammableSwitchEvent.SINGLE_PRESS, @config.logPresses ? false)
 
   @api.on 'didFinishLaunching', =>
+    if @staleAccessories.length > 0 
+      @log "Removing accessories not present in configuration"
+    @api.unregisterPlatformAccessories 'homebridge-enocean-zonefuenf', 'enocean-zonefuenf', @staleAccessories
     for accessory in @config.accessories
       @addAccessory(accessory)
     return
@@ -69,6 +74,13 @@ EnoceanPlatform::configureAccessory = (accessory) ->
   unless serial?
       @api.unregisterPlatformAccessories 'homebridge-enocean-zonefuenf', 'enocean-zonefuenf', [ accessory ]
       return
+
+  # Remove accessory from cache if it was removed from configuration by user
+  if !@config.accessories.find (c) -> c.id == serial 
+      @log 'Schedule accessory for removal:', accessory.displayName
+      @staleAccessories.push accessory
+      return
+
   @accessories[serial] = accessory
 
   @setSwitchEventValue(serial, 'A0', -1)
@@ -84,7 +96,7 @@ EnoceanPlatform::createProgrammableSwitch = (name, model, serial) ->
 
   accessory = new Accessory(name, uuid)
   accessory.on 'identify', (paired, callback) =>
-    @log accessory.displayName, 'identfied'
+    @log accessory.displayName, 'identified'
     callback()
     return
 
