@@ -1,7 +1,7 @@
 {
   "name": "homebridge-enocean-zonefuenf",
   "displayName": "Homebridge EnOcean Switches",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A simple way to bridge your EnOcean switches to Homekit",
   "main": "index.js",
   "keywords": [
