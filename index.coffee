@@ -85,11 +85,6 @@ EnoceanPlatform::configureAccessory = (accessory) ->
 
   @accessories[serial] = accessory
 
-  @setSwitchEventValue(serial, 'A0', -1)
-  @setSwitchEventValue(serial, 'AI', -1)
-  @setSwitchEventValue(serial, 'B0', -1)
-  @setSwitchEventValue(serial, 'BI', -1)
-
   return
 
 EnoceanPlatform::createProgrammableSwitch = (name, model, serial) ->

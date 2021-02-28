@@ -103,10 +103,6 @@
       return;
     }
     this.accessories[serial] = accessory;
-    this.setSwitchEventValue(serial, 'A0', -1);
-    this.setSwitchEventValue(serial, 'AI', -1);
-    this.setSwitchEventValue(serial, 'B0', -1);
-    this.setSwitchEventValue(serial, 'BI', -1);
   };
 
   EnoceanPlatform.prototype.createProgrammableSwitch = function(name, model, serial) {
